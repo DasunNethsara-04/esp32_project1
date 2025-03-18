@@ -12,19 +12,15 @@ WebServer server(80);
 
 void pattern() {
   for (int i = 0; i < arrayLength; i++) {
-    if (i != 20) {
-      digitalWrite(pins[i], HIGH);
-      delay(delayTime);
-    }
+    digitalWrite(pins[i], HIGH);
+    delay(delayTime);
   }
 
   delay(delayTime);
 
   for (int i = 0; i < arrayLength; i++) {
-    if (i != 20) {
-      digitalWrite(pins[i], LOW);
-      delay(delayTime);
-    }
+    digitalWrite(pins[i], LOW);
+    delay(delayTime);
   }
 
   delay(delayTime);
