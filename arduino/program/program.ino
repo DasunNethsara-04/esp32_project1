@@ -76,6 +76,21 @@ void handlePatterns() {
   }
 }
 
+void handleLed() {
+  if (!server.hasArg("state") || !server.hasArg("led")) {
+    server.send(400, "application/json", "Missing state or led parameter");
+  }
+
+  String state = server.arg("state");
+  int led = (server.arg("led")).toInt();
+  if (state == "ON") {
+    digitalWrite(pins[led - 1], HIGH);
+  } else {
+    digitalWrite(pins[led - 1], LOW);
+  }
+  server.send(200, "application/json", "LED is " + state);
+}
+
 void setup() {
   for (int i = 0; i < arrayLength; i++) {
     pinMode(pins[i], OUTPUT);
@@ -91,7 +106,7 @@ void setup() {
   Serial.printf("\nConencted to WiFi: %s\n", WIFI_SSID);
   Serial.printf("IP: %s\n", WiFi.localIP().toString().c_str());
 
-
+  server.on("/led", handleLed);
   server.on("/led/all", handleAllLeds);
   server.on("/led/pattern", handlePatterns);
   server.begin();
