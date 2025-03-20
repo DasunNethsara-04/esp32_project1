@@ -3,8 +3,8 @@
 
 #define WIFI_SSID "Mr.IPS"
 #define WIFI_PWD "596FE8C1"
+#define delayTime 250
 
-const int delayTime = 250;
 const int pins[] = {18, 19, 21, 22, 23};
 const int arrayLength = sizeof(pins) / sizeof(pins[0]);
 
@@ -12,29 +12,19 @@ WebServer server(80);
 
 void pattern() {
   for (int i = 0; i < arrayLength; i++) {
-    if (i != 20) {
-      digitalWrite(pins[i], HIGH);
-      delay(delayTime);
-    }
+    digitalWrite(pins[i], HIGH);
+    delay(delayTime);
   }
-
-  delay(delayTime);
 
   for (int i = 0; i < arrayLength; i++) {
-    if (i != 20) {
-      digitalWrite(pins[i], LOW);
-      delay(delayTime);
-    }
+    digitalWrite(pins[i], LOW);
+    delay(delayTime);
   }
-
-  delay(delayTime);
 
   for (int i = arrayLength; i >= 0; i--) {
     digitalWrite(pins[i], HIGH);
     delay(delayTime);
   }
-
-  delay(delayTime);
 
   for (int i = arrayLength; i >= 0; i--) {
     digitalWrite(pins[i], LOW);
@@ -96,7 +86,6 @@ void setup() {
     pinMode(pins[i], OUTPUT);
   }
   Serial.begin(115200);
-  WiFi.mode(WIFI_STA);
   WiFi.begin(WIFI_SSID, WIFI_PWD);
 
   while (WiFi.status() != WL_CONNECTED) {
