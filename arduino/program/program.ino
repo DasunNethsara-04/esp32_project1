@@ -1,8 +1,8 @@
 #include <WiFi.h>
 #include <WebServer.h>
 
-#define WIFI_SSID "Mr.IPS"
-#define WIFI_PWD "596FE8C1"
+#define WIFI_SSID "TEST"
+#define WIFI_PWD "test123"
 #define delayTime 250
 
 const int pins[] = {18, 19, 21, 22, 23};
